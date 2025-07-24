@@ -1,4 +1,4 @@
-from pydantic.v1 import BaseModel
+from pydantic import BaseModel
 
 
 class UserCreate(BaseModel):
@@ -11,4 +11,12 @@ class UserOut(BaseModel):
     is_admin: bool
 
     class Config:
-        orm_mode = True
+        from_attributes= True
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
