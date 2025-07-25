@@ -1,5 +1,6 @@
 import uuid
 from sqlalchemy import Column, String, Boolean, UUID
+from sqlalchemy.orm import relationship
 from database.session import Base
 
 
@@ -10,3 +11,5 @@ class User(Base):
     username = Column(String, index=True, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     isAdmin = Column(Boolean, nullable=False, default=False)
+
+    files = relationship("File", back_populates="user")
