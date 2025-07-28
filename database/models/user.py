@@ -13,3 +13,4 @@ class User(Base):
     isAdmin = Column(Boolean, nullable=False, default=False)
 
     files = relationship("File", back_populates="user")
+    storage_usage = relationship("StorageUsage", back_populates="user")

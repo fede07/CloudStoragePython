@@ -1,10 +1,9 @@
 from fastapi import HTTPException
 
 from app.domains.user.repository.user_repository import UserRepository
-from app.domains.user.user_schema import TokenResponse
+from app.domains.user.schema.user_schema import TokenResponse
 from app.utils.jwt import create_access_token
 from app.utils.security import Security
-from database.models.user import User
 
 
 class AuthService:
