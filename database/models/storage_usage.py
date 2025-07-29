@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import BigInteger, Date, UUID, Column, UniqueConstraint
+from sqlalchemy import BigInteger, Date, UUID, Column, UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship
 
 from database.session import Base
@@ -10,7 +10,7 @@ class StorageUsage(Base):
     __tablename__ = 'storage_usage'
 
     id = Column(UUID(as_uuid=True), index=True, primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True) , index=True)
+    user_id = Column(UUID(as_uuid=True) , ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     period = Column(Date, nullable=False)
     used_space = Column(BigInteger, nullable=False, default=0)
 
