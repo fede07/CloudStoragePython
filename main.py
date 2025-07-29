@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from app.domains.auth.controller import auth_controller
+from app.domains.user.controller import user_controller
 
 # print("Creating database tables...")
 # Base.metadata.create_all(bind=engine)
@@ -8,6 +9,7 @@ from app.domains.auth.controller import auth_controller
 app = FastAPI()
 
 app.include_router(auth_controller.router, prefix="/auth", tags=["auth"])
+app.include_router(user_controller.router, prefix="/user", tags=["user"])
 
 @app.get("/")
 async def root():

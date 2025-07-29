@@ -14,7 +14,7 @@ class AuthService:
 
     def login(self, username: str, password: str):
         user = self.user_repository.get_user(username)
-        if user is None or not self.security.verify_password(password, user.password):
+        if user is None or not self.security.verify_password(password, user.hashed_password):
             raise HTTPException(status_code=404, detail="Invalid username or password")
         token = create_access_token({"sub": user.username})
         return TokenResponse(access_token=token)

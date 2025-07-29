@@ -10,7 +10,7 @@ class User(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     username = Column(String, index=True, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    isAdmin = Column(Boolean, nullable=False, default=False)
+    is_admin = Column(Boolean, nullable=False, default=False)
 
-    files = relationship("File", back_populates="user")
+    files = relationship("File", back_populates="user", cascade="all, delete, delete-orphan")
     storage_usage = relationship("StorageUsage", back_populates="user")
